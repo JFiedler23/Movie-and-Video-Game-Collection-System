@@ -1,0 +1,6 @@
+Sega-Genesis/Megadrive
+Sega-Master-System
+Sega-Gamegear
+Sega-Nomad
+Sega-Dreamcast
+Sega-CD

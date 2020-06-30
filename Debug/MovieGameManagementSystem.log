@@ -1,0 +1,10 @@
+﻿  Functions.cpp
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(37,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(74,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(83,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(101,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(112,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(129,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\MovieGameManagementSystem\Functions.cpp(172,21): warning C4018: '<': signed/unsigned mismatch
+  MovieGameManagementSystem.vcxproj -> C:\Users\jfied\Documents\Programming\C++\MovieGameManagementSystem\Debug\MovieGameManagementSystem.exe

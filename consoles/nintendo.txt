@@ -1,0 +1,11 @@
+NES
+SNES
+N64
+Gamecube
+Wii
+Switch
+GB
+GBC
+GBA
+DS
+3DS
