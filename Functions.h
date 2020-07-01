@@ -18,5 +18,7 @@ void loadGames(std::vector<Game>& gamesList);
 void saveMovies(std::vector<Movie> movieList);
 void loadMovies(std::vector<Movie>& movieList);
 
-void pickConsole();
+//Video game console functions
+std::string pickConsole();
+std::string pickConsoleHelper(std::string path);
 #endif // !FUNCTIONS_H
