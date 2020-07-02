@@ -22,7 +22,7 @@ void Game::printGame()
 	std::cout << "Title: " << title << std::endl;
 	std::cout << "Genre: " << genre << std::endl;
 	std::cout << "Console: " << console << std::endl;
-	std::cout << "Raing: " << rating << std::endl;
+	std::cout << "Rating: " << rating << std::endl;
 }
 
 std::ostream& operator << (std::ostream& out, const Game& obj)

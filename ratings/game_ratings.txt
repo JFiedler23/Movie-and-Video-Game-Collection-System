@@ -1,0 +1,7 @@
+EC-Early childhood
+E-Everyone
+T-Teen
+M-Mature
+AO-Adults Only
+RP-Rating Pending
+KA-Kids to Adults

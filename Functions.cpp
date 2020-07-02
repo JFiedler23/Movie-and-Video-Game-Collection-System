@@ -1,7 +1,9 @@
 #include "Functions.h"
 #include <string>
-#include <iostream>
-#include <fstream>
+#include <sstream> //sstringstream
+#include <iostream> //cout, cin
+#include <fstream> //file i/o
+#include <locale> //tolower and locale
 
 //Adds a new game to the system
 void addGame(std::vector<Game>& gamesList)
@@ -36,8 +38,8 @@ void addGame(std::vector<Game>& gamesList)
 	//Getting console
 	console = pickConsole();
 
-	std::cout << "Enter game rating: ";
-	std::cin >> rating;
+	//Getting game rating, passing in text file path and type (i.e., rating or format)
+	rating = pickRatingFormat("ratings/game_ratings.txt", "rating");
 
 	//Replaces any spaces in title with -
 	for (int i = 0; i < title.size(); i++)
@@ -57,6 +59,7 @@ void addGame(std::vector<Game>& gamesList)
 		}
 	}
 
+	//Creating new game object
 	Game newGame(title, genre, console, rating);
 
 	gamesList.push_back(newGame);
@@ -94,13 +97,11 @@ void addMovie(std::vector<Movie>& movieList)
 		return;
 	}
 
-	//Getting format
-	std::cout << "Enter movie format: ";
-	std::cin >> format;
+	//Getting format, passing in movie formats file path and type (i.e., rating or format)
+	format = pickRatingFormat("movie_formats.txt", "format");
 
-	//Getting rating
-	std::cout << "Enter movie rating: ";
-	std::cin >> rating;
+	//Getting rating, passing in movie ratings file path and type
+	rating = pickRatingFormat("ratings/movie_ratings.txt", "rating");
 
 	//Replaces any spaces in title with -
 	for (int i = 0; i < title.size(); i++)
@@ -120,11 +121,68 @@ void addMovie(std::vector<Movie>& movieList)
 		}
 	}
 
+	//Creating new movie object
 	Movie newMovie(title, genre, format, rating);
 
 	movieList.push_back(newMovie);
 
 	saveMovies(movieList);
+}
+
+//Removes a game from the system
+void removeGame(std::vector<Game>& gamesList)
+{
+	std::string title;
+	int index;
+
+	std::cout << "\nPlease enter the title of the game you want to remove\n";
+	std::cout << ">";
+	std::cin.ignore();
+	std::getline(std::cin, title);
+
+	index = search("game", title);
+
+	if (index > -1)
+	{
+		//Removing found game
+		gamesList.erase(gamesList.begin() + index);
+		std::cout << "Game has been removed from the system\n";
+
+		//saving game list
+		saveGames(gamesList);
+	}
+	else
+	{
+		std::cout << "Game not found in system\n";
+	}
+}
+
+//Removes a movie from the system
+void removeMovie(std::vector<Movie>& movieList)
+{
+	std::string title;
+	int index;
+
+	std::cout << "\nPlease enter the title of the movie you want to remove\n";
+	std::cout << ">";
+	std::cin.ignore();
+	std::getline(std::cin, title);
+
+	index = search("movie", title);
+
+	if (index > -1)
+	{
+		//Removing found game
+		movieList.erase(movieList.begin() + index);
+		std::cout << "Movie has been removed from the system\n";
+
+		//saving movie list
+		saveMovies(movieList);
+	}
+	else
+	{
+		std::cout << "Game not found in system\n";
+	}
 }
 
 //Displays all games in the system
@@ -151,6 +209,7 @@ void displayAllMovies(std::vector<Movie> movieList)
 	}
 }
 
+//Saves games list to a text file
 void saveGames(std::vector<Game> gamesList)
 {
 	std::ofstream outFile;
@@ -164,15 +223,15 @@ void saveGames(std::vector<Game> gamesList)
 		{
 			outFile << gamesList[i];
 		}
-
-		outFile.close();
 	}
 	else
 	{
 		std::cout << "Unable to open file" << "\n";
 	}
+	outFile.close();
 }
 
+//Loads games from text file into vector
 void loadGames(std::vector<Game> &gamesList)
 {
 	std::ifstream inputFile;
@@ -185,15 +244,16 @@ void loadGames(std::vector<Game> &gamesList)
 		{
 			gamesList.push_back(temp);
 		}
-
-		inputFile.close();
 	}
 	else
 	{
 		std::cout << "Unable to open file" << "\n";
 	}
+
+	inputFile.close();
 }
 
+//Saves movie list to a text file
 void saveMovies(std::vector<Movie> movieList)
 {
 	std::ofstream outFile;
@@ -207,15 +267,16 @@ void saveMovies(std::vector<Movie> movieList)
 		{
 			outFile << movieList[i];
 		}
-
-		outFile.close();
 	}
 	else
 	{
 		std::cout << "Unable to open file" << "\n";
 	}
+
+	outFile.close();
 }
 
+//Loads movies from text file into vector
 void loadMovies(std::vector<Movie>& movieList)
 {
 	std::ifstream inputFile;
@@ -228,11 +289,15 @@ void loadMovies(std::vector<Movie>& movieList)
 		{
 			movieList.push_back(temp);
 		}
-
-		inputFile.close();
 	}
-}
+	else
+	{
+		std::cout << "Unable to open file" << "\n";
+	}
 
+	inputFile.close();
+}
+//Returns name of console
 std::string pickConsole()
 {
 	int choice;
@@ -280,7 +345,6 @@ std::string pickConsole()
 
 	return console;
 }
-
 //Returns name of console
 std::string pickConsoleHelper(std::string path)
 {
@@ -307,6 +371,7 @@ std::string pickConsoleHelper(std::string path)
 	do
 	{
 		std::cout << "\n";
+		std::cout << "Choose your console\n";
 		//Display console options found in file
 		for (int i = 0; i < consoleList.size(); i++)
 		{
@@ -326,4 +391,149 @@ std::string pickConsoleHelper(std::string path)
 	{
 		return consoleList[choice - 1];
 	}
+}
+
+//Allows the user to pick a rating for a game/movie based on a predefined list
+std::string pickRatingFormat(std::string filePath, std::string type)
+{
+	int choice;
+	std::ifstream inputFile;
+	std::vector<std::string> ratingsList;
+
+	inputFile.open(filePath);
+
+	if (inputFile.is_open())
+	{
+		std::string line;
+		int i = 1;
+
+		std::cout << "\n";
+		std::cout << "\nPlease choose the appropriate " << type << "\n\n";
+
+		//Getting ratings list
+		while (std::getline(inputFile, line))
+		{
+			ratingsList.push_back(line);
+
+			//Printing rating options
+			std::cout << i << ". " << line << "\n";
+			i++;
+		}
+
+		//Looping until user makes a valid choice
+		do
+		{
+			std::cout << "Enter your choice: ";
+			std::cin >> choice;
+
+			//Checking if user made a valid choice
+			if (choice < 1 || choice > ratingsList.size())
+			{
+				std::cout << "Invalid choice\n";
+			}
+			else
+			{
+				return ratingsList[choice-1];
+			}
+
+
+		} while (choice < 1 || choice > ratingsList.size());
+	}
+	else
+	{
+		return "N/A";
+	}
+
+	inputFile.close();
+}
+
+//Searches for a game or movie and returns the index of the found title
+int search(std::string searchType, std::string title)
+{
+	int index;
+	std::locale loc;
+	std::string searchTemp;
+	std::string listTemp;
+
+	//lowercasing users search title
+	for (int j = 0; j < title.size(); j++)
+	{
+		searchTemp.push_back(std::tolower(title[j], loc));
+	}
+
+	if (searchType == "game")
+	{
+		std::vector<Game> gameList;
+		loadGames(gameList);
+
+		//checking each title
+		for (int i = 0; i < gameList.size(); i++)
+		{
+			//lowercasing game titles
+			for (int j = 0; j < gameList[i].title.size(); j++)
+			{
+				//finding dashes and replacing them with spaces
+				if (gameList[i].title[j] == '-')
+				{
+					listTemp.push_back(' ');
+				}
+				//otherwise lowercase each character
+				else
+				{
+					listTemp.push_back(std::tolower(gameList[i].title[j], loc));
+				}
+			}
+
+			//Checking if there is a match
+			if (listTemp == searchTemp)
+			{
+				return i;
+			}
+			else
+			{
+				index = -1;
+			}
+
+			//clearing temp string
+			listTemp.clear();
+		}
+	}
+	else
+	{
+		std::vector<Movie> movieList;
+		loadMovies(movieList);
+
+		//checking each title
+		for (int i = 0; i < movieList.size(); i++)
+		{
+			//lowercasing game titles
+			for (int j = 0; j < movieList[i].title.size(); j++)
+			{
+				//finding dashes and replacing them with spaces
+				if (movieList[i].title[j] == '-')
+				{
+					listTemp.push_back(' ');
+				}
+				//otherwise lowercase each character
+				else
+				{
+					listTemp.push_back(std::tolower(movieList[i].title[j], loc));
+				}
+			}
+
+			//Checking if there is a match
+			if (listTemp == searchTemp)
+			{
+				return i;
+			}
+			else
+			{
+				index = -1;
+			}
+
+			//clearing temp string
+			listTemp.clear();
+		}
+	}
+	return index;
 }

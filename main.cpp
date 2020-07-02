@@ -22,13 +22,15 @@ int main()
 		std::cout << "---------\n";
 		std::cout << "1. Add game\n";
 		std::cout << "2. Add movie\n";
-		std::cout << "3. Display All Games\n";
-		std::cout << "4. Display All Movies\n";
+		std::cout << "3. Remove game\n";
+		std::cout << "4. Remove movie\n";
+		std::cout << "5. Display All Games\n";
+		std::cout << "6. Display All Movies\n";
 		std::cout << "8. Quit\n";
 		std::cout << "\n";
 
 		//Prompting user for their menu choice
-		std::cout << "Enter your choice >";
+		std::cout << "Enter the menu option number your choice >";
 		std::cin >> choice;
 
 		switch (choice)
@@ -40,9 +42,15 @@ int main()
 				addMovie(movieList);
 				break;
 			case 3:
-				displayAllGames(gamesList);
+				removeGame(gamesList);
 				break;
 			case 4:
+				removeMovie(movieList);
+				break;
+			case 5:
+				displayAllGames(gamesList);
+				break;
+			case 6:
 				displayAllMovies(movieList);
 				break;
 			case 8:
