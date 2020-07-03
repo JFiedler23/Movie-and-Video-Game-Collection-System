@@ -38,6 +38,7 @@ Step 2. Unzip the project in your desired location
 
 For Windows:
 * Navigate to the "Builds" folder and run the "MovieGameManagementSystem.exe" file.
+* Alternatively, open the project in Visual Studio and press Crtl-F5 to compile and run.
 
 For Mac/Linux:
 * Step 1. Open up your terminal
@@ -47,8 +48,8 @@ For Mac/Linux:
 
 ## Built With
 
-* Microsoft Visual Studio Community 2019
 * C++
+* Microsoft Visual Studio Community 2019
 
 ## Authors
 
