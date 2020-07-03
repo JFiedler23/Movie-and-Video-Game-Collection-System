@@ -467,7 +467,7 @@ int search(std::string searchType)
 //Searches for a game or movie and returns the index of the found title
 int searchHelper(std::string searchType, std::string title)
 {
-	int index;
+	int index = -1;
 	std::locale loc;
 	std::string searchTemp;
 	std::string listTemp;
