@@ -1,0 +1,6 @@
+VHS
+LaserDisc
+DVD
+Blu-Ray
+4K
+Digital
