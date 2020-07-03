@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 For Windows:
-* Ensure you have Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019 installed on your computer.
+* Ensure you have Microsoft Visual C++ Redistributable for Visual Studio 2019 installed on your computer.
 * You can download it here https://visualstudio.microsoft.com/downloads/
 
 For Mac:
