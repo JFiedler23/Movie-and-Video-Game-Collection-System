@@ -1,7 +1,3 @@
-Halo-3
-FPS
-Xbox-360
-M-Mature
 Dr.Mario
 Puzzle
 GB
@@ -9,4 +5,8 @@ KA-Kids
 Animal-Crossing:-New-Horizons
 RPG
 Switch
+E-Everyone
+Starfox-64
+Action
+N64
 E-Everyone

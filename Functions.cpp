@@ -135,25 +135,24 @@ void removeGame(std::vector<Game>& gamesList)
 	std::string title;
 	int index;
 
-	std::cout << "\nPlease enter the title of the game you want to remove\n";
-	std::cout << ">";
+	std::cout << "\nPlease enter the title of the game you want to remove: ";
 	std::cin.ignore();
 	std::getline(std::cin, title);
 
-	index = search("game", title);
+	index = searchHelper("game", title);
 
 	if (index > -1)
 	{
 		//Removing found game
 		gamesList.erase(gamesList.begin() + index);
-		std::cout << "Game has been removed from the system\n";
+		std::cout << "\nGame has been removed from the system\n";
 
 		//saving game list
 		saveGames(gamesList);
 	}
 	else
 	{
-		std::cout << "Game not found in system\n";
+		std::cout << "\nGame not found in system\n";
 	}
 }
 
@@ -163,25 +162,24 @@ void removeMovie(std::vector<Movie>& movieList)
 	std::string title;
 	int index;
 
-	std::cout << "\nPlease enter the title of the movie you want to remove\n";
-	std::cout << ">";
+	std::cout << "\nPlease enter the title of the movie you want to remove: ";
 	std::cin.ignore();
 	std::getline(std::cin, title);
 
-	index = search("movie", title);
+	index = searchHelper("movie", title);
 
 	if (index > -1)
 	{
 		//Removing found game
 		movieList.erase(movieList.begin() + index);
-		std::cout << "Movie has been removed from the system\n";
+		std::cout << "\nMovie has been removed from the system\n";
 
 		//saving movie list
 		saveMovies(movieList);
 	}
 	else
 	{
-		std::cout << "Game not found in system\n";
+		std::cout << "\nGame not found in system\n";
 	}
 }
 
@@ -447,8 +445,27 @@ std::string pickRatingFormat(std::string filePath, std::string type)
 	inputFile.close();
 }
 
+int search(std::string searchType)
+{
+	std::string title;
+
+	//Getting movie title
+	std::cout << "Please enter the title you want to search for> ";
+	std::cin.ignore();
+	std::getline(std::cin, title);
+
+	if (searchType == "game")
+	{
+		return searchHelper("game", title);
+	}
+	else
+	{
+		return searchHelper("movie", title);
+	}
+}
+
 //Searches for a game or movie and returns the index of the found title
-int search(std::string searchType, std::string title)
+int searchHelper(std::string searchType, std::string title)
 {
 	int index;
 	std::locale loc;

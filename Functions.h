@@ -33,5 +33,9 @@ std::string pickConsoleHelper(std::string path);
 //Ratings/format function
 std::string pickRatingFormat(std::string filePath, std::string type);
 
-int search(std::string searchType, std::string title);
+//Movie and game search function, searchType is either movie or game
+int search(std::string searchType);
+
+//Search helper function does the string comparison
+int searchHelper(std::string searchType, std::string title);
 #endif // !FUNCTIONS_H
