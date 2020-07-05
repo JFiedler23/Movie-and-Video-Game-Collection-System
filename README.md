@@ -53,7 +53,7 @@ For Mac/Linux:
 
 ## Authors
 
-* **John Fiedler**
+* **John Fiedler** - [JFiedler23](https://github.com/JFiedler23)
 
 ## License
 
