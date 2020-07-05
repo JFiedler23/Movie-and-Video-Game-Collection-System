@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 For Windows:
 * Ensure you have Microsoft Visual C++ Redistributable for Visual Studio 2019 installed on your computer.
-* You can download it here https://visualstudio.microsoft.com/downloads/
+* You can download it here https://visualstudio.microsoft.com/
 
 For Mac:
 * Make sure you have g++ installed on your computer. 
@@ -49,7 +49,7 @@ For Mac/Linux:
 ## Built With
 
 * C++
-* Microsoft Visual Studio Community 2019
+* [Microsoft Visual Studio Community 2019](https://visualstudio.microsoft.com/) - The IDE that I used
 
 ## Authors
 
